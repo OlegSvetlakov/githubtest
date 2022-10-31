@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   <!--    
+    <div id="element">
+        <div>Элемент</div>
+    </div>
+
+    <script>
+        let element = document.getElementById('element')
+        element.style.background = 'tomato'
+    </script>
+<ul>
+        <li>Пункт 1</li>
+        <li>Пункт 2</li>
+    </ul>
+    <ul>
+        <li>Пункт 3</li>
+        <li>Пункт 4</li>
+    </ul>
+    <script>
+        let elements = document.querySelectorAll('ul > li:first-child')
+        for(let element of elements) {
+            element.style.color = "gray"
+            element.innerHTML = "Новое значение"
+        }
+    </script>
+
+    <ul>
+        <li>Пункт 1</li>
+        <li>Пункт 2</li>
+        <li>Пункт 3</li>
+    </ul>
+
+    <script>
+        let element = document.querySelector('ul > li')
+        element.innerHTML = "<a href='#'>Ссылка</a>"
+    </script>
+    
+    <a href="http://google.com">Гугл</a><br>
+    <a href="http://yandex.ru">Яндекс</a><br>
+    <a href="http://mail.ru">Мэйл</a><br>
+    <script>
+      for(let element of document.body.children) {
+        if(element.matches('a[href$=".ru"')) {
+            element.innerHTML = "Сайт в зоне .ru"
+        }
+      }
+    </script>
+
+<h2>Zagolovok</h2>
+
+
+    <ul class="list">
+        <li class="item">Punkt 1</li>
+        <li class="item">Punkt 2</li>
+    </ul>
+
+<script>
+    let list = document.querySelector('list')
+    let list = document.querySelector('item')
+
+    console.log(list.contains(item))
+    console.log(list.contains(list))
+
+</script>
+
+<p>Абзац текста</p>
+<script>
+    let elem = document.querySelector('p')
+    setInterval(() => elem.hidden = !elem.hidden, 1000)
+</script>
+
+<p title="Подсказка" class="text">Абзац текста</p>
+<script>
+    let elem = document.querySelector('p')
+    elem.setAttribute("class", "new_text")
+    for(let atrr of elem.attributes[]) {
+        console.log
+    }
+</script>
+
+<p>Разделитель</p>
+<hr>
+<script>
+    let div = document.createElement('div')
+    div.className = "alert"
+     
+    document.querySelector('hr').before(div)
+
+    let p = document.createElement('p')
+    p textContent = 'Важное сообщение!'
+    div.append(p)
+
+</script>
+<ul>
+    <li>Пункт 1</li>
+    <li>Пункт 2</li>
+</ul>
+<script>
+    let ul = document.querySelector('ul')
+     ul.insertAdjacentHTML('beforebegin', '<p>beforebegin</p>')
+     ul.insertAdjacentHTML('afterbegin', '<li>afterbegin</li>')
+     ul.insertAdjacentHTML('beforeend', '<li>beforeend</li>')
+     ul.insertAdjacentHTML('afterend', '<p>afterend</p>')
+</script>
+
+
+<div class="alert">
+    <p>сообщение</p>
+</div>
+
+
+<div id="one">One</div>
+<div id="two">Two</div>
+
+<script>
+    let div = document.querySelector('div')
+    setTimeout(() => {
+        div.remove()
+        two.after(one)
+    }, 2000)
+</script>
+
+<script>
+    let div = document.querySelector('div')
+
+    let div2 = div.cloneNode(true)
+    div2.querySelector('p').textContent = "Еще одно сообщение"
+    div.after(div2)
+</script>
+
+
+<script>
+    let ul = document.createElement('ul');
+    document.body.append(ul);
+
+    while(true) {
+        let data = prompt("Введите текст для элемента списка", "")
+        if(!data) {
+            break
+        }
+        let li = document.createElement('li')
+        li.textContent = data
+        ul.append(li)
+    }
+</script>
+
+<script>
+    let data = {
+        "Овощи": {
+            "Огурцы": 5,
+            "Помидоры": 3
+        },
+        "Фрукты": {
+            "Красные": {
+                "Клубника": 2,
+                "Малинка": 4
+            },
+            "Зеленые": {
+                "Яблоко": {
+                    "Гнилое": 3,
+                    "Свежее": 3,
+                },
+                "Лайм": 2
+            }
+        }          
+    }
+    function createUl(obj) {
+        if(!Object.keys(obj).length)
+         return
+        let ul = document.createElement('ul')
+        for(let key in obj) {
+            let li = document.createElement('li')
+            if(!isNaN(obj[key]))
+              li.textContent = key +' '+ obj[key]
+            else
+              li.textContent = key
+            let childrenUl = createUl(obj[key])
+            if(childrenUl) {
+              li.append(childrenUl)
+            }
+            ul.append(li)
+        }   
+       return ul
+    }
+    function createTree(container, obj) {
+        document.querySelector(container).append(createUl(obj))
+    }
+    createTree('body', data)
+</script>
+
+    <script>
+        function createCalendar(elem, year, month) {
+            elem = document.querySelector(elem)
+
+            let mon = month - 1;
+            let d = new Date(year, mon)
+
+            let table = `
+            <caption>${month}.${year}</caption>
+            <table>
+                <tr>
+                    <th>пн</th>
+                    <th>вт</th>
+                    <th>ср</th>
+                    <th>чт</th>
+                    <th>пт</th>
+                    <th>сб</th>
+                    <th>вс</th>
+                </tr>
+                <tr>
+            `;
+
+            for(let i=0; i<getDay(d); i++) {
+                table += '<td></td>'
+            }
+
+            while(d.getMonth() == mon) {
+               table += '<td>' + d.getDate() + '</td>'
+                if(getDay(d) % 7 == 6) {
+                    table += '</tr><tr>'
+                }
+                d.setDate(d.getDate()+1)
+            }
+        
+            if(getDay(d) !=0) {
+                for(let i=getDay(d); i<7; i++) {
+                    table += '<td></td>'
+                }
+            }
+
+            table += '</tr></table>';
+            elem.innerHTML = table
+        }
+
+        function getDay(date) {
+            let day = date.getDay();
+            if(day == 0) day = 7;
+            return day - 1;
+        }
+
+        createCalendar('body', 2022, 11)
+        
+    </script>
+
+    <table id="table">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Number</th>
+        </tr>
+        <tr>
+            <th>Sasha</th>
+            <th>10</th>
+            <th>10</th>
+        </tr>
+        <tr>
+            <th>Masha</th>
+            <th>15</th>
+            <th>15</th>
+        </tr>
+        <tr>
+            <th>Pasha</th>
+            <th>11</th>
+            <th>11</th>
+        </tr>
+        <tr>
+            <th>Dasha</th>
+            <th>7</th>
+            <th>7</th>
+        </tr>
+    </table>
+    <script>
+        let sortedRows = Array.from(table.rows)
+        .alice(1)
+        .sort((rowA, rowB) => {
+            return rowA.cells[1].innerHTML - rowB.cells[1].innerHTML
+        })
+        table.tBodies[0].append(...sortedRows)
+    </script>
+
+    <div id="clock"></div>
+   
+   <script>
+        function update() {
+            let date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            if(hours < 10) hours = '0' + hours
+            if(minutes < 10) minutes = '0' + minutes
+            if(seconds < 10) seconds = '0' + seconds
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+            setInterval(update, 1000)
+    </script>
+
+    <div class="alert block">
+    <p>Сообщение</p>
+    </div>
+    
+  <script>
+        let div = document.querySelector('div')
+        div.className = 'alert text block'
+        for(let name of div.classList) {
+            console.log(name)
+        }
+        div.classList.toggle('block')
+    </script>
+
+<script>
+    let div = document.querySelector('div')
+    div.style.color = "black"
+    div.style.width = "300px"
+    div.style.backgroundColor = prompt("Цвет", "tomato")
+    div.style.display = "none"
+    setTimeout(()=> div.style.display = "", 4000)
+    console.log(div.style.color)
+    let style = getComputedStyle(div)
+    console.log(style.color)
+</script>
+
+<main style="position: relative;" id="main">
+<div id="example" style="
+    position: absolute;
+    left: 150px;
+    top: 120px;
+    width: 350px;
+    height: 150px;
+    border: 10px solid black;
+    padding: 15px;
+    ">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dignissimos eligendi quia.</div>
+</main>
+ 
+<script>
+    console.log(example.scrollTop)
+</script>
+
+<div>
+Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis natus autem, id sit tenetur eveniet exercitationem numquam officia fugit enim error quia ex nesciunt, hic sed suscipit perspiciatis quisquam aspernatur!
+</div>
+<script>
+
+    let elem = document.querySelector('div')
+
+    let scrollHeight = Math.max(document.body.scrollHeight,
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.body.clientHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight,
+    document.documentElement.scrollHeight,)
+
+</script>
+
+
+    <table>
+    <tr>
+        <th>№</th>
+        <th>Информация</th>
+        <th>1С</th>
+    </tr>
+    </table>
+
+<script src="js/const.js"></script>
+
+    <script>
+        JOURNALS.forEach(function(item) {
+            let row = document.createElement('tr')
+            row.innerHTML = `
+            <td>${item[0]}</td>
+            <td>${item[1]}</td>
+            <td>${item[2] == 'yes' ? '<span style="color: #d5da00">&#9745</span>' : item[2] == 'no' ? 
+            '<span style="color: red">&#9746</span>' : item[2]}</td>`
+            document.querySelector('table').append(row)
+        });
+
+    </script>
+
+
+
+    <table></table>
+
+    <script src="js/const.js"></script>
+    <script>
+        for(let key in PHONE_NUMBER) {
+            let row = document.createElement('tr')
+            row.innerHTML = `<th colspan="2">${key}</th>`
+            document.querySelector('table').append(row)
+            for(let i=0; i<PHONE_NUMBER[key].length; i++) {
+                let row = document.createElement('tr')
+                row.innerHTML = `
+                <td>${PHONE_NUMBER[key][i][0]}</td>
+                <td>${PHONE_NUMBER[key][i][1]}</td>
+                `
+                document.querySelector('table').append(row)
+            }
+        }
+    </script>
+
+<script src="js/const.js"></script>
+<script>
+    function rooms() {
+        let rooms = [];
+        for(let i=0; i<people.length; i++) {
+            rooms.push(
+                [ people[i]["room"], `${people[i]["name"]["f"]}
+                ${people[i]["name"]["i"]} ${people[i]["name"]["o"]}` ]  
+            )
+        }
+        return rooms.sort((a, b) => +a[0]-b[0])
+    }
+    document.querySelector('body').innerHTML = `<table></table>`
+    let title_rooms = document.createElement('tr')
+    title_rooms.innerHTML = `<th>Комната</th>
+                             <th>ФИО</th>`
+    document.querySelector('table').append(title_rooms)
+    for(let i=0; i<rooms().length; i++) {
+        let row = document.createElement('tr')
+        row.innerHTML = `
+            <td>${rooms()[i][0]}</td>
+            <td>${rooms()[i][1]}</td>
+            `
+            document.querySelector('table').append(row)
+    }
+</script>
+
+<div class="items"></div>
+<script src="js/const.js"></script>
+<script>
+    function createCards(selector, Array) {
+      for(let i=0; i<people.length; i++) {
+        let item = document.createElement('div')
+        item.classList.add('item')
+        item.innerHTML = `
+            ФИО: ${people[i]["name"]["f"]} ${people[i]["name"]["i"]} ${people[i]["name"]["o"]} <br>
+            Номера телефона: ${people[i]["number"].join(', ')} <br>
+            День рождения: ${people[i]["date"]["d"]} ${month[+people[i]["date"]["m"]]}
+            ${people[i]["date"]["y"]}<br>
+            Kомната: ${people[i]["room"]}<br>
+        `
+        document.querySelector('.items').append(item)
+    }         
+}
+    createCards('.items', people)
+</script>
+-->
+
+<div class="items"></div>
+<script src="js/const.js"></script>
+<script>
+    people.for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
+    }
+</script>
+</body>
+</html>
